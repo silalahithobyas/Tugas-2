@@ -60,7 +60,7 @@
     "fields":{
         "watched":"Yes",
         "title":"Red Notice",
-        "rating": "3.5",
+        "rating": "3",
         "release_date":"12/11/21",
         "review":"To me, this movie is just some good dumb fun."
     }
@@ -93,7 +93,7 @@
     "fields":{
         "watched":"Yes",
         "title":"Work It",
-        "rating": "3.5",
+        "rating": "3",
         "release_date":"08/08/20",
         "review":"As a dance movie, Work It moves just fine."
     }
