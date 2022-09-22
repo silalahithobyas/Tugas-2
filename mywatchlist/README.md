@@ -3,9 +3,9 @@ NPM     : 2106650001
 **
 
 **Link herokuapp : **
-https://tugas-lab-2.herokuapp.com/mywatchlist/html/
-https://tugas-lab-2.herokuapp.com/mywatchlist/xml/
-https://tugas-lab-2.herokuapp.com/mywatchlist/json/
+1. https://tugas-lab-2.herokuapp.com/mywatchlist/html/
+2. https://tugas-lab-2.herokuapp.com/mywatchlist/xml/
+3. https://tugas-lab-2.herokuapp.com/mywatchlist/json/
 
 **•	Jelaskan perbedaan antara JSON, XML, dan HTML!**
   1.	JSON
@@ -28,8 +28,8 @@ https://tugas-lab-2.herokuapp.com/mywatchlist/json/
       -	 Ekstensi HTML adalah .html
 
 **•	Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform!**
-      -	 Dalam mengimplementasi sebuah platform kita memerlukan data delivery untuk memenuhi kebutuhan dalam mengirimkan data dari satu stack ke stack lainnya.  
-         Dengan data delivery, kita dapat mengirimkan data dengan berbagai macam bentuk, seperti HTML, JSON, atau XML.
+      Dalam mengimplementasi sebuah platform kita memerlukan data delivery untuk memenuhi kebutuhan dalam mengirimkan data dari satu stack ke stack lainnya.  
+      Dengan data delivery, kita dapat mengirimkan data dengan berbagai macam bentuk, seperti HTML, JSON, atau XML.
     
 **•	Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas!**
   1.	Membuat aplikasi baru dalam proyek Django Tugas 2 pekan lalu bernama mywatchlist.
