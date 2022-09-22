@@ -1,5 +1,4 @@
 from django.test import TestCase, Client
-from django.urls import resolve
 
 # Create your tests here.
 class TestUrl(TestCase):
