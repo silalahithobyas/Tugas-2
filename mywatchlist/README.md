@@ -61,16 +61,16 @@ NPM     : 2106650001
          path('xml', show_xml, name='show_xml'),
          **name disesuaikan dengan nama fungsi yang dibuat**
   7.   Melakukan deployment ke Heroku terhadap aplikasi yang sudah kamu buat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.
-       Implementasi : add, commit, push, dan nanti semua perubahan akan terupdate ke aplikasi di heroku.
+      -  Implementasi : add, commit, push, dan nanti semua perubahan akan terupdate ke aplikasi di heroku.
       
 
 **POSTMAN**
   
-XML
+1. XML
 <img width="960" alt="2022-09-22 (3)" src="https://user-images.githubusercontent.com/103397366/191659369-4e15393d-df4b-441d-a6df-af37e5cd0366.png">
 
-HTML
+2. HTML
 <img width="960" alt="2022-09-22 (2)" src="https://user-images.githubusercontent.com/103397366/191659396-639b08d0-d71e-49bf-8a98-c5d5015a46b4.png">
 
-JSON
+3. JSON
 <img width="960" alt="2022-09-22 (4)" src="https://user-images.githubusercontent.com/103397366/191659519-83ced623-c65d-48ef-ac7b-3a09bfbfab27.png">
