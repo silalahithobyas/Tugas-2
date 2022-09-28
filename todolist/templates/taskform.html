@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<body>
+<title>Add Todo List</title>
+{% endblock meta %}
+
+{% block content %}
+
+<div class = "add">
+    <h1 style="font-family:'Courier New'"><center>✅Add a task!✅</center></h1>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        <table align="center">
+            <tr>
+                <td>Task: </td>
+                <td><input type="text" name="title" placeholder="Task name" class="form-control"></td>
+            </tr>
+                    
+            <tr>
+                <td>Description: </td>
+                <td><input type="text" name="description" placeholder="Task description" class="form-control"></td>
+            </tr>
+        </table>
+
+        <input type="submit" name="submit" value="Add Task" style="font-family: Georgia, 'Times New Roman', Times, serif; padding: 5px; margin: 10px;"/>
+        <input type="button" value="Back" onclick="history.back()" style="font-family: Georgia, 'Times New Roman', Times, serif; padding: 5px; margin: 10px;"/>
+    </form>
+
+</div>
+</body>
+
+<style>
+    .add {
+        text-align: center;
+    }
+    tr, td {
+        padding: 5px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    input {
+        padding: 3px;
+    }
+    form {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    body {
+        background-color: #FFEFD5;
+    }
+    h1 {
+        font-size: 40px;
+        margin-bottom: 50px;
+    }
+</style>
+
+{% endblock content %}

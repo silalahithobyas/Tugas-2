@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<body>
+<title>Account Login</title>
+{% endblock meta %}
+
+{% block content %}
+
+<div class = "login">
+
+    <h1 style="font-family:'Courier New'"><center>📢Login📢</center></h1>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        <table align="center">
+            <tr>
+                <td>Username: </td>
+                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+            </tr>
+                    
+            <tr>
+                <td>Password: </td>
+                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+            </tr>
+
+            <!-- <tr>
+                <td></td>
+                <td><input class="btn login_btn" type="submit" value="Login"></td>
+            </tr> -->
+        </table>
+
+        <input class="btn login_btn" type="submit" value="Login" style="font-family: Georgia, 'Times New Roman', Times, serif; padding: 5px; margin: 10px;">
+    </form>
+
+    {% if messages %}
+        <ul >
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}     
+        
+    Don't have an account yet? <a href="{% url 'todolist:register' %}">Sign up here!</a>
+
+</div>
+</body>
+
+<style>
+    body {
+        background-color: 	#FAF0E6;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    tr, td {
+        padding: 5px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    .login {
+        text-align: center;
+    }
+    input {
+        padding: 5px;
+    }
+</style>
+{% endblock content %}

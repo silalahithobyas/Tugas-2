@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<body>
+<title>Account Registration</title>
+{% endblock meta %}
+
+{% block content %}  
+
+<div class = "login">
+
+    <h1 style="font-family:'Courier New'"><center>📢Registration📢</center></h1>
+
+        <form method="POST" >  
+            {% csrf_token %}  
+            <table align="center">  
+                {{ form.as_table }}  
+                <tr>  
+                    <td></td>
+                    <td><input type="submit" name="submit" value="Register" style="font-family: Georgia, 'Times New Roman', Times, serif; padding: 5px; margin: 10px;"/></td>  
+                </tr>  
+            </table>  
+            <!-- <input type="submit" name="submit" value="Daftar" style="font-family: Georgia, 'Times New Roman', Times, serif; padding: 5px; margin: 10px;"/> -->
+        </form>
+
+    {% if messages %}  
+        <ul>   
+            {% for message in messages %}  
+                <li>{{ message }}</li>  
+                {% endfor %}  
+        </ul>   
+    {% endif %}
+
+</div>  
+</body>
+<style>
+    table {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        padding: 5px;  
+    }
+    tr, td {
+        padding: 5px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    body {
+        background-color: #D3D3D3;
+    }
+</style>
+
+{% endblock content %}
