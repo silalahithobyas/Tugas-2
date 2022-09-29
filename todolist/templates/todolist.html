@@ -1,10 +1,17 @@
 {% extends 'base.html' %}
 
- {% block content %}
+{% block meta %}
+<body>
+<title>TODOLIST</title>
+{% endblock meta %}
 
+{% block content %}
+
+<link href='https://fonts.googleapis.com/css?family=Pinyon Script' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
   <body>
-    <h1 style="font-family:'Courier New'"><strong><center>❗❗TODOLIST❗❗</center></strong></h1>
-    <h2 style="font-family:'Courier New'"><center>Name: {{nama}}</center></h2><br>
+    <h1 style="font-family:'Pinyon Script'"><strong><center>❗❗TODOLIST❗❗</center></strong></h1>
+    <h2 style="font-family:'Poppins'"><center>Name: {{nama}}</center></h2><br>
 
     <div class="button-task">
         <button><a href="create-task/">Add a new task</a></button>
@@ -22,7 +29,7 @@
     th, td {
         background-color: #D8BFD8;
         padding: 10px;
-        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-family: Georgia, 'Poppins', Times, serif;
     }
     body, table {
         margin-top: 20px;
