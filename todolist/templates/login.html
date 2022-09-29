@@ -7,9 +7,11 @@
 
 {% block content %}
 
+<link href='https://fonts.googleapis.com/css?family=Pinyon Script' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 <div class = "login">
 
-    <h1 style="font-family:'Courier New'"><center>📢Login📢</center></h1>
+    <h1 style="font-family:'Pinyon Script'"><center>✷ Thoby's Todolist Manager ✷</center></h1>
 
     <form method="POST" action="">
         {% csrf_token %}
@@ -30,7 +32,7 @@
             </tr> -->
         </table>
 
-        <input class="btn login_btn" type="submit" value="Login" style="font-family: Georgia, 'Times New Roman', Times, serif; padding: 5px; margin: 10px;">
+        <input class="btn login_btn" type="submit" value="Login" style="font-family: 'Poppins'; padding: 5px; margin: 10px;">
     </form>
 
     {% if messages %}
@@ -49,11 +51,11 @@
 <style>
     body {
         background-color: 	#FAF0E6;
-        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-family: 'Poppins';
     }
     tr, td {
         padding: 5px;
-        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-family: 'Poppins';
     }
     .login {
         text-align: center;
