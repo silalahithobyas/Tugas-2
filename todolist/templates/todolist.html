@@ -6,78 +6,175 @@
 {% endblock meta %}
 
 {% block content %}
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 
-<link href='https://fonts.googleapis.com/css?family=Pinyon Script' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-  <body>
-    <h1 style="font-family:'Pinyon Script'"><strong><center>❗❗Todolist❗❗</center></strong></h1>
-    <h2 style="font-family:'Poppins'"><center>Username: {{nama}}</center></h2><br>
-
-    <div class="button-task">
-        <button><a href="create-task/">Add a new task</a></button>
-        <div class="space"></div>
-        <button><a href="{% url 'todolist:logout' %}">Logout</a></button>
-    </div>
-
-  </body>
-
-  <style>
-    table, th, td {
-        border: 1px solid white;
-        border-collapse: collapse;
+  
+<style>
+    body {
+        background-image: url(https://cdn.discordapp.com/attachments/766058720706166805/1027474957611053117/original_584dd316b6a1e2e82968911f07f4fe95.gif);
+        background-repeat: repeat;
+        background-size: cover;
+        min-height: 100%;
     }
-    th, td {
-        background-color: #D8BFD8;
-        padding: 10px;
-        font-family: 'Poppins';
-    }
-    body, table {
-        margin-top: 20px;
-        background-color: #E6E6FA;
-    }
-    h1 {
-        font-size: 50px;
-        margin-bottom: 10px;
-    }
-    .space {
-        width: 4px;
-        height: auto;
-        display: inline-block;
-    }
-    .button-task {
+    .header {
+        padding: 20px;
         text-align: center;
     }
-  </style>
+    .primary-heading {
+        font-size: 45px;
+        font-family: 'Poppins';
+        text-align: center;
+        margin-bottom: 28px;
+        color: #eaeaea;
+        margin-bottom: 8px;
+        margin-top: 50px;
+    }
+    .body {
+        padding-top: 16px;
+        padding: 16px;
+    }
+    .button {
+        border-radius: 5px;
+        border: #ffffff;
+        padding: 10px 16px;
+        text-align: center;
+        display: inline-block;
+        font-family: 'Poppins';
+        font-size: small;
+    }
+    a {
+    color: #4c4c4c;
+    font-size: small;
+    font-family: 'Poppins';
+    }
+    h1, h3, h4 {
+    font-size: xx-large;
+    color: #d5d5d5;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    font-family: 'Poppins';
+    }
+    h2 {
+      margin-top: 20px;
+      font-size: large;
+      color: #FFFDED;
+      margin-bottom: 10px;
+      font-family: 'Poppins';
+    }
 
-  <table align="center" > 
-    <thread><tr>
-        <th>Date created</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Status</th>
-        <th>Option</th>
-    </tr></thread>
+    h3 {
+    font-size: large;
+    font-weight: normal;
+    font-family: 'Poppins';
+    }
 
-    {% for list in todo_list %}
-      <tr>
-        <td>{{list.date}}</td>
-        <td>{{list.title}}</td>
-        <td>{{list.description}}</td>
-        <td>
-            {% if list.is_finished %}
-                Done
-                {% else %}
-                Undone
-                {% endif%}
-        </td>
-        <td>
-          <button><a href="{% url 'todolist:status' list.id %}">Change Status</a></button>
-          <button><a href="{% url 'todolist:delete' list.id %}">Delete Task</a></button>
-            
-        </td>
-      </tr>
-    {% endfor %}
+    h4 {
+    font-size: small;
+    text-align: right;
+    font-weight: normal;
+    font-family: 'Poppins';
+    }
 
-  </table>
+    #tasks {
+        margin-left: auto;
+        margin-right: auto;
+        align-content: center;
+        font-family: 'Poppins';
+        border-collapse: collapse;
+        width:100%;
+        outline-color: #4c4c4c;
+    }
+    .card {
+    margin-right: auto;
+    margin-left: auto;
+    width: 250px;
+    box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
+    height: 300px;
+    border-radius: 5px;
+    backdrop-filter: blur(14px);
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    text-align: center;
+    }
+    .card:hover {
+        transform: scale(1.01);
+        box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+    }
 
- {% endblock content %}
+    p {
+      margin-top: 10px;
+      font-size: large;
+      color: #202121;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    #Description {
+        position: relative;
+    }
+    #Done {
+        font-size: small;
+        font-weight:bold;
+        color: #ffffff;
+    }
+
+    .badge-success {
+    background-color: #2e2e2e ;
+    }
+
+    #Undone {
+    font-size: small;
+    font-weight: bold;
+    color: #ffffff;
+    }
+
+    .badge-warning {
+    background-color: #2e2e2e ;
+    }
+
+</style>
+
+<body>
+    <div ALIGN = 'center'>
+            <div class="wrapper">
+                <div class = "header">
+                    <h1 class = "primary-heading">𓆇 {{nama}}'s Task Manager 𓆇 </h1>
+                    <h2 style="font-family:'Poppins'"><center>Current User: {{nama}}</center></h2><br>
+                </div>
+                <div class="separator" style="color:#201335; margin:10x"></div>
+                <div class = "body">
+                <button style="margin-top: 16px; text-align: center; margin-bottom: 10px"><a href="{% url 'todolist:tambah_task' %}"> Add a new task</a></button>
+                <div class="separator" style="color:#201335; margin:10x"></div>
+                    <div class="body">
+                        {% for list in todo_list%}
+                        <div class="card" style="margin-bottom: 20px;" >
+                            {% if list.is_finished %}
+                                    <div><span class="badge badge-pill badge-success" id="Done">Done</span></div>
+                                        <h4 style = "text-align: center;"> Created On: {{list.date}} </h4>
+                            {% else %}
+                                    <div><span class="badge badge-pill badge-success" id="Undone">Undone</span></div>
+                                        <h4 style = "text-align: center;"> Created On: {{list.date}} </h4>
+                            {% endif %}
+                            <div style = "text-align: center;" id="Description">
+                                <h1 style = "text-align: center;" >{{list.title}}</h1> <h4 style = text-align:center;>{{list.description}}</h4>
+                            </div>
+                            <div class="mt-auto align-items-end">
+                                <button><a href="{% url 'todolist:status' list.id %}">Change Status</a></button>
+                                <button><a href="{% url 'todolist:delete' list.id %}">Delete Task</a></button>
+                            </div>
+                        </div>
+                        {% endfor %}
+                <button><a href="{% url 'todolist:logout' %}"> Logout</a></button>
+            </div>     
+    </div>
+</body>
+
+{% endblock content %}
