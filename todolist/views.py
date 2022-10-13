@@ -1,15 +1,17 @@
-from django.shortcuts import render
+# from urllib import response
+# from django.shortcuts import render
 from todolist.models import Task
-from django.http import HttpResponse
+# from django.http import HttpResponse
 from django.core import serializers
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404, render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import datetime
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 @login_required(login_url='/todolist/login/')
@@ -21,6 +23,27 @@ def show_todolist(request):
         # 'last_login': request.COOKIES['last_login'],
     }
     return render(request, "todolist.html", context)
+
+# Implementasi fungsi AJAX -> Tambah Task
+@csrf_exempt
+def tambah_task_ajax(request):
+    if request.method == "POST":
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        date = datetime.datetime.now()
+        is_finished = False
+        data = Task.objects.create(title=title, description=description, date=date, user=request.user, is_finished=is_finished)
+        # data.save()
+        result = {
+            'pk': data.pk,
+            'fields':{
+                'title': title,
+                'date': date,
+                'description': description,
+                'is_finished': is_finished
+            }
+        }
+        return JsonResponse(result)
 
 def register(request):
     form = UserCreationForm()
@@ -77,3 +100,7 @@ def status(request, update_status):
     data_status.is_finished = True
     data_status.save()
     return HttpResponseRedirect(reverse('todolist:show_todolist'))
+
+def show_json(request):
+    data = Task.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")

@@ -6,6 +6,8 @@
 {% endblock meta %}
 
 {% block content %}
+
+<!-- Implementasi Bootstrap -->
 <head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -142,39 +144,127 @@
 
 </style>
 
+ <!-- Implementasi AJAX -->
+ <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+      $(document).ready(function(){
+
+        // Fungsi GET
+        $.get("/todolist/json", function(data) {
+            for (i=0;i<data.length;i++){
+                $("#list").append(
+                    `<div class="column column-block scroll-x"><div class="card" id="${data[i].pk}">
+                        <div class="container" id="${data[i].pk}">
+                            <h4 class="card-title"><b>${data[i].fields.title}</b></h4>
+                            <h5>${data[i].fields.date}</h5>
+                            <p>${data[i].fields.description}</p>
+                            <p>${data[i].fields.is_finished ? "Finished": "Not Finished"}</p>
+                            <button type="button" class="btn btn-dark" id="delete_btn" onclick="delete_task(${data[i].pk})">Hapus Task</button>
+                            <button type="button" class="btn btn-light" style="color: black;">Ubah Status</button>
+                        </div>
+                    </div></div>`)
+            }
+        });
+
+        // Fungsi POST
+        $("#save_button").click(function(){
+            $.post("/todolist/add/", {
+                title:$("#todolistTitle").val(),
+                description:$("#todolistDesc").val()},
+                function(res) {
+                  $("#list").append(
+                      `<div class="column column-block scroll-x"><div class="card" id="${res.pk}">
+                          <div class="container" id="${res.pk}">
+                              <h4 class="card-title"><b>${res.fields.title}</b></h4>
+                              <h5>${res.fields.date}</h5>
+                              <p>${res.fields.description}</p>
+                              <p>${res.fields.is_finished ? "Done": "Undone"}</p>
+                              <button type="button" class="btn btn-dark" id="delete_btn" onclick="delete_task(${res.pk})">Delete Task</button>
+                              <button type="button" class="btn btn-light" style="color: black;">Chage Status</button>
+                          </div>
+                      </div></div>`
+                  )
+
+                  $("#todolistTitle").val('')
+                  $("#todolistDesc").val('')
+                }
+            )
+        })
+      });
+
+      function delete_task(id) {
+            $.ajax({
+                url: `/todolist/delete/${id}`,
+                type: 'DELETE',
+                success: function (result) {
+                    $(`#${id}`).remove()
+                    $("#list").html('')
+                    $.get("/todolist/json", function(data) {
+                      for (i=0;i<data.length;i++){
+                          $("#list").append(
+                              `<div class="column column-block scroll-x"><div class="card" id="${data[i].pk}">
+                                  <div class="container" id="${data[i].pk}">
+                                    
+                                      <h4 class="card-title"><b>${data[i].fields.title}</b></h4>
+                                      <h5>${data[i].fields.date}</h5>
+                                      <p>${data[i].fields.description}</p>
+                                      <p>${data[i].fields.is_finished ? "Done": "Undone"}</p>
+                                      <button type="button" class="btn btn-dark" id="delete_btn" onclick="delete_task(${data[i].pk})">Delete Task</button>
+                                      <button type="button" class="btn btn-light" style="color: black;">Change Status</button>
+                                  </div>
+                              </div></div>`)
+                      }
+                  });
+                }
+            });
+        }
+
+    </script>
+  </head>
+
+<!-- Template -->
 <body>
     <div ALIGN = 'center'>
-            <div class="wrapper">
                 <div class = "header">
                     <h1 class = "primary-heading">𓆇 {{nama}}'s Task Manager 𓆇 </h1>
                     <h2 style="font-family:'Poppins'"><center>Current User: {{nama}}</center></h2><br>
                 </div>
-                <div class="separator" style="color:#201335; margin:10x"></div>
-                <div class = "body">
-                <button style="margin-top: 16px; text-align: center; margin-bottom: 10px"><a href="{% url 'todolist:tambah_task' %}"> Add a new task</a></button>
-                <div class="separator" style="color:#201335; margin:10x"></div>
-                    <div class="body">
-                        {% for list in todo_list%}
-                        <div class="card" style="margin-bottom: 20px;" >
-                            {% if list.is_finished %}
-                                    <div><span class="badge badge-pill badge-success" id="Done">Done</span></div>
-                                        <h4 style = "text-align: center;"> Created On: {{list.date}} </h4>
-                            {% else %}
-                                    <div><span class="badge badge-pill badge-success" id="Undone">Undone</span></div>
-                                        <h4 style = "text-align: center;"> Created On: {{list.date}} </h4>
-                            {% endif %}
-                            <div style = "text-align: center;" id="Description">
-                                <h1 style = "text-align: center;" >{{list.title}}</h1> <h4 style = text-align:center;>{{list.description}}</h4>
-                            </div>
-                            <div class="mt-auto align-items-end">
-                                <button><a href="{% url 'todolist:status' list.id %}">Change Status</a></button>
-                                <button><a href="{% url 'todolist:delete' list.id %}">Delete Task</a></button>
-                            </div>
-                        </div>
-                        {% endfor %}
-                <button><a href="{% url 'todolist:logout' %}"> Logout</a></button>
-            </div>     
-    </div>
-</body>
 
-{% endblock content %}
+                <div class = "#list"></div>
+                <p></p>
+
+                <button type="button"  data-bs-toggle="modal" data-bs-target="#my-modal">Add Task</button>
+
+                <div class = "modal" id = "my-modal">
+                    <div class = "modal-content">
+                        <h1>Add a Task!</h1>
+                        <button type = "button" class = "btn-close" data-bs-dismiss = "modal" aria-label="Close"></button>
+                        <form method = "POST" action = "">
+                            {% csrf_token %}
+                            <table>
+                                <tr>
+                                    <td> Task Title: </td>
+                                    <td><input type = "text" name = "title" placeholder="Title" class = "form-control" id = "title"></td>
+                                </tr>
+                                <tr>
+                                    <td> Task Description: </td>
+                                    <td><input type = "text" name = "description" placeholder = "Description" class = "form-control" id = "description"></td>
+                                </tr>
+                            </table>
+                        </form>
+                        <button type = "button" data-bs-dismiss="modal">Close</button>
+                        <button type = "button" id = "submit" data-bs-dismiss="modal">Add Task</button>
+                    </div>
+                </div>
+    
+                <button><a href="{% url 'todolist:logout' %}" >Logout</a></button> 
+            </div>
+        </div>
+    
+    
+    </body>
+
+
+    {% endblock content %}
