@@ -1,0 +1,33 @@
+# Tugas 6 - Thobyas Muda Parlindungan (2106650001)
+
+* [Heroku App](tugas-lab-2.herokuapp.com/todolist)
+
+## **1. Jelaskan perbedaan antara asynchronous programming dengan synchronous programming!**
+- **Asynchronous Programming**
+    Sebuah program yang dijalankan tanpa adanya urutan atau antrian, dilakukan secara serentak. Contohnya adalah AJAX
+
+    - Disebut juga dengan multi-thread, yaitu menjalankan program secara paralel
+    - Asynchronous adalah sebuah non-blocking yang akan mengirimkan beberapa file sekaligus ke server
+
+- **Synchronous Programming**
+    Sebuah program yang dijalankan secara sequential atau sesuai dengan urutan kode yang ditulis. 
+
+    - Merupakan single-thread, yang membuat program hanya bisa menjalankan 1 proker di waktu yang sama
+    - Synchronos adalah sebuah blocking parameter dan hanya bisa mengirimkan 1 file ke setiap server pada waktu tertentu
+    
+## **2.Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma Event-Driven Programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini!**
+
+- Event driven programming adalah ketika sebuah program berjalan berdasarkan event yang dilakukan oleh user.
+- Contohnya adalah dengan saat kita melakukan submit atau menekan suatu button. Pada penjelasan ini, khususnya akan ditekankan pada button yang akan menambahkan task dan deskripsi baru, penggunaan Modal dari AJAX. Penambahan task dan deskripsi akan dikelola atau digabungkan ketika suatu event terjadi, diantaranya adalah penekanan button.
+ 
+## **3. Jelaskan penerapan asynchronous programming pada AJAX!**
+Program secara automatis akan melakukan penambahan task, tanpa harus me-refresh halaman terkait dan memunculkannya pada halaman depan. Setelah mendapatkan task baru, secara automatis, halaman akan diperbarui.
+
+## **4. Jelaskan agaimana cara kamu mengimplementasikan checklist di atas!**
+- Membuat views baru `tambah_task_ajax` baru untuk menambahkan task ke JSON
+- Membuat views baru `show_json`  dan path baru untuk mengakses `todolist/json/` 
+- Membuat modal untuk menambahkan task dan menambahkan tag form di dalam modal tersebut
+- Membuat path di `urls.py`, sehingga `todolist/add/` mengarahkan pada fungsi tambah_task_ajax yang sudah dibuat di views
+- Menghubungkan input di form dengan fungsi AJAX dengan menambahkan id pada tag input dan menghubungkannya dengan pengolahan data AJAX
+- Menggunakan AJAX untuk melakukan get dan mengambil data dari JSON
+- Menggunakan AJAX untuk melakukan post ketika button save_button diklik, dengan demikian, asynchronous programming akan terjadi
