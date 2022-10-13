@@ -1,0 +1,60 @@
+# Tugas 5 - Thobyas Muda Parlindungan (2106650001)
+
+* [Heroku App](tugas-lab-2.herokuapp.com/todolist)
+
+## **1. Apa perbedaan dari Inline, Internal, dan External CSS? Apa saja kelebihan dan kekurangan dari masing-masing style?**
+- **Internal CSS**
+Merupakan kode yang ditulis di dalam tag < style >. Internal CSS biasa digunakan untuk membuat tampilan pada suatu website yang unik atau berbeda dengan halaman website lainnya. Manfaat dari Internal CSS adalah bisa mengubah tampilan di spesifik elemen untuk spesifik halaman website. Tetapi kurang sesuai atau sedikit pemborosan bila klasifikasi elemen tersebut akan digunakan atau berlaku dalam beberapa file.
+
+- **Inline CSS** 
+Merupakan kode yang ditulis langsung pada atribut elemen HTML. Setiap elemennya secara default mempunyai style attribute nya masing-masing. Manfaatnya adalah karena CSS ini berlaku untuk setiap atribut elemen, jenis ini dapat membantu kita dalam mencoba style pada satu elemen saja. Tetapi, secara keseluruhan kurang efisien karena hanya dapat digunakan untuk 1 elemen.
+
+- **Eksternal CSS** 
+Merupakan kode yang ditulis terpisah dari kode HTML yang dibuat (dalam file yang berbeda dengan extention CSS). File tersebut akan diletakkan di bagian awal head. Manfaatnya adalah konfigurasi style atau file CSS tersebut bisa digunakan di beberapa website. Namun, ketika file CSS tidak berhasil dieksekusi, file HTML akan langsung menjadi berantakan.
+
+## **2. Jelaskan tag HTML5 yang kamu ketahui.**
+```<!html> untuk membuat dokumen HTML
+<title> : Membuat judul sebuah halaman
+<body> : Mendefinisikan body dari suatu dokumen
+<button> : Untuk membuat button
+<b> : Untuk bold
+<strike> : Untuk mencoret kata
+<input> : Untuk membuat sebuah input
+<div> : Menspesifikasi suatu bagian di dalam dokumen
+<head> : Mendifisikan bagian head dari dokumen (contohnya title)
+<h1> sampai <h6> : Untuk heading html
+<p> : Untuk membuat teks sebagai paragraf
+<table> : Untuk mendefinisikan data table
+<style> : Memasukkan informasi style
+```
+
+## **3. Jelaskan tipe-tipe CSS selector yang kamu ketahui.**
+- Id Selector: Seleksi berdasarkan id attribute elemennya
+- Element Elector: Seleksi berdasarkan elemennya
+- Universal Selector: Seleksi semua elemen HTML pada halaman tersebut
+- Class Selector: Seleksi elemen-elemen yang ada pada sebuah class spesifik
+- Grouping Selector: Seleksi semua elemen HTML yang memiliki style yang sama untuk dijadikan satu
+
+## **4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.**
+- Customization pada template HTML yang telah dibuat pada Tugas 4 menggunakan CSS Bootstrap pakai cara Internal CSS.
+- Customization pada halaman todolist menggunakan cards:
+  Menambahkan tag `<style>` dengan kode ini lalu diimplementasikan pada selectors:
+  ```python
+    .card {
+        margin-right: auto;
+        margin-left: auto;
+        width: 250px;
+        box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
+        height: 300px;
+        border-radius: 5px;
+        backdrop-filter: blur(14px);
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 10px;
+        text-align: center;
+     }
+    .card:hover {
+        transform: scale(1.01);
+        box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+     }
+  ```
+- Membuat supaya menjadi responsive
